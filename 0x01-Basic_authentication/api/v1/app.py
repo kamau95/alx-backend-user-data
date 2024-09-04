@@ -72,7 +72,7 @@ def forbidden(e) -> str:
     Handler for 403 Forbidden errors.
     Returns a JSON response with an error message.
     """
-    return jsonify({"error": "Forbidden"})
+    return jsonify({"error": "Forbidden"}), 403
 
 
 if __name__ == "__main__":
