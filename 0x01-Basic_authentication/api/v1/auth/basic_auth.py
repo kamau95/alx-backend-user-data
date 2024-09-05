@@ -50,11 +50,11 @@ class BasicAuth(Auth):
         this method extracts user credentials password and username
         """
         if decoded_base64_authorization_header is None:
-            return None
+            return None, None
         if not isinstance(decoded_base64_authorization_header, str):
-            return None
+            return None, None
         if ':' not in decoded_base64_authorization_header:
-            return None
+            return None, None
         parts = decoded_base64_authorization_header.split(':', 1)
         if len(parts) != 2:
             return None, None
