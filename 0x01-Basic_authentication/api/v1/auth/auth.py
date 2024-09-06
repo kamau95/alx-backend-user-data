@@ -11,8 +11,8 @@ class Auth:
     """
     this class manages api authentication
     """
-    def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
-        """
+    """def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
+        pass
         Determines whether a given path requires authentication or not
         Args:
             - path(str): Url path to be checked
@@ -20,7 +20,7 @@ class Auth:
               authentication
         Return:
             - True if path is not in excluded_paths, else False
-        """
+        pass
         if path is None:
             return True
         elif excluded_paths is None or excluded_paths == []:
@@ -36,6 +36,22 @@ class Auth:
                 if i[-1] == "*":
                     if path.startswith(i[:-1]):
                         return False
+        return True
+        """
+    def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
+        """Checks if a path requires authentication.
+        """
+        if path is not None and excluded_paths is not None:
+            for exclusion_path in map(lambda x: x.strip(), excluded_paths):
+                pattern = ''
+                if exclusion_path[-1] == '*':
+                    pattern = '{}.*'.format(exclusion_path[0:-1])
+                elif exclusion_path[-1] == '/':
+                    pattern = '{}/*'.format(exclusion_path[0:-1])
+                else:
+                    pattern = '{}/*'.format(exclusion_path)
+                if re.match(pattern, path):
+                    return False
         return True
 
     def authorization_header(self, request=None) -> str:
