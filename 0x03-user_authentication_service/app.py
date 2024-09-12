@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+"""
+the factory for my flask app
+"""
 from flask import Flask, jsonify, request
 from auth import Auth
 

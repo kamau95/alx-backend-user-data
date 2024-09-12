@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+"""
+thi si the auth module
+"""
 import bcrypt
 from db import DB
 from user import User
